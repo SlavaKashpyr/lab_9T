@@ -43,7 +43,19 @@ fun ImagePost(post: PostModel) {
 
 @Composable
 fun Post(post: PostModel, content: @Composable () -> Unit = {}) {
-  //TODO add your code here
+  Card (shape = MaterialTheme.shapes.large) {
+    Column (
+      modifier = Modifier.padding(
+        top = 8.dp, bottom = 8.dp
+      )
+    ) {
+      Header(post)
+      Spacer(modifier = Modifier.height(4.dp))
+      content.invoke()
+      Spacer(modifier = Modifier.height(8.dp))
+      PostActions(post)
+    }
+  }
 }
 
 @Composable
@@ -194,7 +206,19 @@ fun VotingAction(
   onUpVoteAction: () -> Unit,
   onDownVoteAction: () -> Unit
 ) {
-  //TODO add your code here
+    Row (verticalAlignment = Alignment.CenterVertically) {
+      ArrowButton(
+        onUpVoteAction,
+        R.drawable.ic_baseline_arrow_upward_24
+      )
+      Text(
+        text = text,
+        color = Color.Gray,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp
+      )
+      ArrowButton(onDownVoteAction, R.drawable.ic_baseline_arrow_downward_24)
+    }
 }
 
 @Composable
